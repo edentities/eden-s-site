@@ -1,0 +1,512 @@
+/* DESKTOP / LAPTOP VERSION */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
+:root {
+
+    /* MAIN PAGE */
+    --background: #e2dbdf;
+    --text: #3b393a;
+    --dark: #090909;
+    /* UI */
+    --button-pink: #272626;
+    --button-pink-dark: #cb82a8;
+    /* STORY COLORS */
+    --tongue: #610e26;
+    --animals: #290f57;
+    --bring-me-in: #e371bf;
+    --slow-down: #0a5c7a;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: "Nunito", sans-serif;
+}
+
+/* MAIN PAGE */
+.stories-page {
+    width: 92%;
+    max-width: 1255px;
+    margin: 0 auto;
+    padding: 55px 0 45px;
+}
+
+/* HEADER */
+.page-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+.page-header h1 {
+    font-family: "Dancing Script", cursive;
+    font-size: clamp(58px, 6vw, 90px);
+    font-weight: 1000;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.header-subtitle {
+    font-family: "Nunito", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--text);
+    opacity: .8;
+    margin-top: 25px;
+
+}
+
+/* BACK BUTTON*/
+.back-button {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition:
+        transform .3s ease,
+        opacity .3s ease;
+}
+.back-button:hover {
+    transform: translateX(-8px);
+    opacity: .55;
+}
+
+/* CATEGORY SECTIONS */
+.story-section {
+    position: relative;
+    margin-bottom: 28px;
+}
+.story-section::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 18px;
+    background: #610e2570;
+    margin-top: 28px;
+}
+/* CATEGORY BUTTONS */
+.category-button {
+    position: relative;
+    width: 100%;
+    min-height: 58px;
+    border: none;
+    border-radius: 40px;
+    background: var(--button-pink);
+    color: white;
+    cursor: pointer;
+    padding: 12px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    box-shadow:
+        inset 0 -5px 0 rgba(0, 0, 0, 0.628),
+        0 5px 0 rgba(117,35,77,.15);
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+.category-button:hover {
+    transform: translateY(-3px);
+    background: var(--button-pink-dark);
+    box-shadow:
+        inset 0 -5px 0 rgba(156, 74, 112, 0.662),
+        0 8px 0 rgba(220, 114, 169, 0.15);
+}
+.category-button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+.category-button.active {
+    background: var(--button-pink-dark)
+}
+.category-arrow {
+    font-size: 22px;
+    transition:
+        transform .4s ease;
+}
+.category-button.active .category-arrow {
+    transform: rotate(180deg);
+}
+
+/* STORY LIST */
+.story-list {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        grid-template-rows .55s ease,
+        opacity .4s ease;
+}
+.story-list.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+/* STORY BUTTON CONTAINER */
+.story-button {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 12px;
+    border: 2px solid #9e5179;
+    border-radius: 30px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Nunito", sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .25s ease,
+        border-color .3s ease;
+}
+.story-button:hover {
+    background: rgba(166,75,118,.15);
+    transform: scale(1.01);
+}
+.story-button.active {
+    background: var(--button-pink);
+    color: white;
+    border-color: var(--button-pink);
+
+}
+.story-arrow {
+    font-size: 20px;
+    transition:
+        transform .35s ease;
+
+}
+.story-button.active .story-arrow {
+    transform: rotate(45deg);
+}
+
+/* STORY CARD */
+.story-card {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 12px;
+    border-radius: 20px;
+    color: white;
+    transition:
+        max-height .65s ease,
+        opacity .4s ease,
+        transform .5s ease;
+    transform: translateY(-8px);
+}
+/* STORY OPEN */
+.story-card.open {
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* STORY CARD COLORS */
+/* ON THE TIP OF MY TONGUE */
+#tongue {
+    background: var(--tongue);
+}
+/* LIKE ANIMALS */
+#animals {
+    background: var(--animals);
+}
+/* JUST BRING ME IN */
+#bring-me-in {
+    background: var(--bring-me-in);
+}
+/* SLOW DOWN */
+#slow-down {
+    background: var(--slow-down);
+}
+/* PROMPTS */
+#prompt-one {
+    background: #8d326b;
+}
+
+/* STORY CARD CONTENT */
+.story-card-content {
+    position: relative;
+    padding: 32px 38px;
+    display: grid;
+    grid-template-columns:
+        300px
+        minmax(250px, 1fr)
+        190px;
+    gap: 38px;
+    align-items: center;
+}
+/* STORY IMAGE */
+.story-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 3px solid rgba(255,255,255,.3);
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.15);
+}
+.story-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition:
+        transform .5s ease;
+}
+.story-image:hover img {
+    transform: scale(1.04);
+}
+
+/* STORY INFORMATION */
+.story-type {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: .70;
+    margin-bottom: 11px;
+}
+.story-info h2 {
+    font-family: "Dancing Script", ;
+    font-size: clamp(36px, 4vw, 40px);
+    font-weight: 660;
+    font-style: italic;
+    line-height: .99;
+    margin-bottom: 11px;
+    margin: .15em;
+}
+.author {
+    font-size: 18px;
+    font-weight: 600;
+    opacity: .70;
+    margin-top: 11px;
+}
+
+/* TAGS */
+.story-description {
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 600;
+}
+.story-label {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+}
+.nsfw {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #e2dbdfe3;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 1000;
+    letter-spacing: 1px;
+}
+
+/* STORY LINKS */
+.story-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+.story-link {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 30px;
+    background: white;
+    color: var(--text);
+    text-decoration: none;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.12);
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+.story-link:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 8px 15px rgba(0,0,0,.18);
+}
+/* SECONDARY BUTTON */
+.story-link.secondary {
+    background: rgba(255,255,255,.75);
+}
+.story-link.secondary:hover {
+    background: white;
+}
+
+/* PROMPT CARDS */
+.prompt-card {
+    width: 100%;
+    margin-top: 18px;
+    padding: 28px;
+    border-radius: 22px;
+    background: #ffffff;
+    border: 3px solid #8d326b;
+    box-shadow:
+        0 6px 0 rgba(117, 35, 77, .15);
+}
+/* TWEET PREVIEW */
+.tweet-preview {
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 18px;
+    background: #f5dce9;
+    overflow: hidden;
+}
+.tweet-preview .twitter-tweet {
+    margin: 0 auto !important;
+    max-width: 550px !important;
+}
+
+/* PROMPT INFORMATION */
+.prompt-info {
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* ABOUT */
+.prompt-author {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    opacity: .75;
+    margin-bottom: 11px;
+}
+/* TAGS */
+.prompt-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.prompt-tags span {
+    padding: 6px 13px;
+    border-radius: 20px;
+    background: #3b393a;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+.prompt-tags span:hover {
+    transform: translateY(-3px);
+    background: #a64b76;
+}
+
+/* FOOTER */
+.page-footer {
+    margin-top: 35px;
+    text-align: center;
+    font-family: "Dancing Script", ;
+    font-size: 15px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: 1px;
+    opacity: .9;
+}
+
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    .stories-page {
+        width: 92%;
+        max-width: 1250px;
+        padding-top: 65px;
+    }
+
+    .story-card-content {
+        min-height: 230px;
+    }
+}
+
+/* LAPTOP */
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .story-card-content {
+        grid-template-columns:
+            260px
+            minmax(220px, 1fr)
+            170px;
+        gap: 25px;
+    }
+
+    .story-info h2 {
+        font-size: 42px;
+    }
+}
+
+
+/* MOBILE — TEMPORARY
+ */
+@media (max-width: 768px) {
+    .stories-page {
+        width: 92%;
+        padding-top: 35px;
+    }
+
+    .page-header h1 {
+        font-size: 52px;
+    }
+
+    .category-button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .story-card-content {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+
+    .story-card-content::before {
+        width: 100%;
+    }
+
+    .story-actions {
+        width: 100%;
+    }
+}
+    .prompt-card {
+    width: 100%;
+}
